@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Time Table</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Timetable</li>
+                </ul>
+            </div> 
+            {% if action is not None %}
+            <div class="col-auto text-right float-right ml-auto">
+                <a href="{% url 'download_image' timetable.id %}" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+                {% if user.user_type == "1" %}
+                <a href="{% url 'add_student' %}" class="btn btn-primary">update</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% if action is  None %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+            
+            <form method="POST" action="?action=show_student">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12">
+                    <h5 class="form-title"><span>Time Table</span></h5>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                        <label>session-year</label>
+                    <select class="form-control" name='year' required>
+                        <option>Select year</option>
+                        {% for year in years %}
+                            <option>{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+                <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label>Branch</label>
+                    <select class="form-control" name='branch' required>
+                        <option>Select branch</option>
+                        {% for branch in branches %}
+                            <option>{{ branch }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" >Time Table</button>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="text-center">
+    <img src="{{ timetable.photo.url }}" class="img-thumbnail" alt="..." width = "400px" height = "800px">
+</div>
+{% endif %}
+
+{% endblock %}

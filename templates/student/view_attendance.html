@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+            <div class="content container-fluid">
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Students</h3>
+                        </div>
+                    </div>
+                </div>
+            
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Subject Name</th>
+                                        <th>Date</th>
+                                        <th>P/AB</th>
+                                    </tr>
+                                </thead>
+                                {% for s in sample %}
+                                <tbody>
+                                    <tr>
+                                        
+                                        <td>
+                                        <h2 class="table-avatar">
+                                            <a href="student-details.html">{{s.attendance_id.subject_id.name}}</a>
+                                        </h2>
+                                        </td>
+                                        <td>{{ s.attendance_id.attendance_date}}</td>
+                                        <td class="table-success">Present</td>
+                                        
+                                    </tr>
+                                </tbody>
+                                {% endfor %}
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                
+                </div>
+    </div>
+</div>
+
+{% endblock %}

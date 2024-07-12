@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <h3 class="page-title">Courses</h3>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                <li class="breadcrumb-item active">Courses</li>
+            </ul>
+        </div>
+        <div class="col-auto text-right float-right ml-auto">
+            <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+            <a href="{% url 'add_course' %}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-sm-12">
+        <div class="card card-table">
+            <div class="card-body">
+                <div class="table-responsive">
+                <table id="table_id" class="table table-hover table-center mb-0">
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
+                        </tr>
+                    </thead>
+                    {% for course in courses %}
+                    <tbody>
+                        <tr>
+                            <td>{{course.name}}</td>
+                            <td>{{ course.created_at}}</td>
+                            <td>{{ course.updated_at }}</td>
+                            <td class="text-right">
+                            <div class="actions">
+                                <a href="{% url 'delete_course' course.id %}" class="btn btn-sm bg-danger-light">
+                                <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock %}

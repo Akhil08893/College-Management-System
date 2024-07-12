@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block content %}
+            {% if action is None %}
+            <div class="content container-fluid">
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">View Attendance</h3>
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+            <form method="POST" action="?action=get_attendance">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12">
+                    <h5 class="form-title"><span>Attendance</span></h5>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                        <label>Subject</label>
+                    <select class="form-control" name='subject' required>
+                        <option>Select Subject</option>
+                        {% for subject in subjects %}
+                            <option>{{ subject }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+                <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label>session-year</label>
+                    <select class="form-control" name='year' required>
+                        <option>Select year</option>
+                        {% for session in sessions %}
+                            <option>{{ session }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col col-sm-6 mt-2">
+                <div class="form-group">
+                    <label>Attendance date</label>
+                    <div>
+                        <input type="date" class="form-control" name='date' required>
+                    </div>
+                </div>
+            </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" >View Attendance</button>
+                </div>
+                </div>
+            </form>
+            {% else %}
+            <div class="content container-fluid">
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Students</h3>
+                        </div>
+
+                        <div class="col-auto text-right float-right ml-auto">
+                    
+                            <a href="{% url 'Take_attendance' %}" class="btn btn-primary"><i class="fas fa-plus">Add</i></a>
+                        </div>
+                    </div>
+                </div>
+            
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                            <table   class="table ">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </tbody>
+                                {% if attendance_report %}
+                                {% for attendance in attendance_report %}
+                            
+                                    <tr>
+                                        
+                                        <td>
+                                        <h2 class="table-avatar">
+                                            <a href="student-details.html">{{attendance.student_id.name}}</a>
+                                        </h2>
+                                        </td>
+                                        
+                                        <td>{{ attendance.student_id.email}}</td>
+                                        <td>
+                                        <div class="actions">
+                                            <a href="{% url 'update_attendance' attendance.id %}" class="btn btn-primary">
+                                                Update
+                                            </a>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                {% else %}
+                                <td style="text-align:center;">
+                                    <br>
+                                    <p style="color:red;font-size:150%; text-align:center"> No students Present</p>
+                                </td>
+                                {% endif %}
+                            </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                {% endif %}
+                </div>
+    </div>
+</div>
+
+{% endblock %}

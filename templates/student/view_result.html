@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content container-fluid">
+    <div class="row">
+        <!-- Student Information -->
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <b>
+                    <h4>
+                        <strong>STUDENTS INFORMATION</strong>
+                    </h4>
+                </b>
+                <hr />
+            </div>
+            <div class="form-group">
+                <div class="col-12 col-sm-12">
+                    <strong>Hallticket.No</strong>
+                    <input type="text" value="{{student.student_id}}" readonly="readonly" id="cBody_txtRegNo" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-12 col-sm-12">
+                    <strong>Name</strong>
+                    <input type="text" value="{{student.name}}" readonly="readonly" id="cBody_txtRegNo" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-12 col-sm-12">
+                    <strong>Branch Code</strong>
+                    <input type="text" value="{{student.Branch}}" readonly="readonly" id="cBody_txtRegNo" class="form-control" />
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Table -->
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <b>
+                    <h4>
+                        <strong>RESULTS</strong>
+                    </h4>
+                </b>
+                <hr />
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Subject Name</th>
+                            <th>EXAMMY</th>
+                            <th>Grade</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if  not status %}
+                        <td style="text-align:center;">
+                            <br>
+                            <p style="color:red;font-size:150%; text-align:center"> Results not uploaded</p>
+                        </td>
+                        {% else %}
+                            {% for result in results %}
+                            <tr>
+                                <td>{{ result.subject_id.name }}</td>
+                                <td>APR-2023</td>
+                                <td>{{result.grade}}</td>
+                                <td>{{result.status}}</td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

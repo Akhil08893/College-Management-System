@@ -1,0 +1,82 @@
+{% load static %}
+<div class="header">
+    <div class="header-left">
+        <a href="index.html" class="logo">
+        <img src="{% static 'assets/img/logo.png' %}" alt="Logo">
+        </a>
+        <a href="index.html" class="logo logo-small">
+        <img src="{% static 'assets/img/logo-small.png' %}" alt="Logo" width="30" height="30">
+        </a>
+    </div>
+    <a href="javascript:void(0);" id="toggle_btn">
+    <i class="fas fa-align-left"></i>
+    </a>
+    <div class="top-nav-search mt-3">
+        <h4><strong>Welcome</strong>&nbsp{{ user.first_name }}!</h4>
+    </div>
+    <a class="mobile_btn" id="mobile_btn">
+    <i class="fas fa-bars"></i>
+    </a>
+    <ul class="nav user-menu">
+        <li class="nav-item dropdown noti-dropdown">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+            <i class="far fa-bell"></i> <span class="badge badge-pill">{{ num_notification }}</span>
+            </a>
+            <div class="dropdown-menu notifications">
+            <div class="topnav-dropdown-header">
+                <span class="notification-title">Notifications</span>
+                <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+            </div>
+            <div class="noti-content">
+                <ul class="notification-list">
+                    {% for notification in notifications %}
+                    <li class="notification-message">
+                        <a href="#">
+                        <div class="media">
+                            <span class="avatar avatar-sm">
+                            <img class="avatar-img rounded-circle" alt="User Image" src="{% static 'assets/img/profiles/avatar-13'%}.jpg" >
+                            </span> 
+                            <div class="media-body">
+                                <p class="noti-details"><span class="noti-title">Akhil(Hod)</span> <br> <span class="noti-title"> {{notification.message}}</span></p>
+                                <p class="noti-time"><span class="notification-time">{{ notification.created_at|timesince }}</span></p>
+                            </div>
+                        </div>
+                    </a>
+                    </li>
+                    {% endfor %}
+            </ul>
+            </div>
+            <div class="topnav-dropdown-footer">
+            <a href="{% url 'view_notifications' %}">View all Notifications</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item dropdown has-arrow">
+        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+        <span class="user-img">
+            {% if user.profilepic.url is not None %}
+            <img class="rounded-circle" src="{{ user.profilepic.url }}" width="30" height="30" alt="{{user.first_name}}">
+            {% else %}
+            <img class="rounded-circle" alt="User Image" src="{% static 'assets/img/profiles/avatar-13'%}.jpg" width="30" height="30" >
+            {% endif %}
+        </span>
+        </a>
+        <div class="dropdown-menu">
+            <div class="user-header">
+                <div class="user-text">
+                    <h6>{{ user.first_name }}</h6>
+                    {% if user.user_type == '1'%}
+                    <p class="text-muted mb-0">Head of department(HOD)</p>
+                    {% elif user.user_type == '2' %}
+                    <p class="text-muted mb-0">Staff</p>
+                    {% else %}
+                    <p class="text-muted mb-0">Student</p>
+                    {% endif %}
+                </div>
+            </div>
+            <a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
+            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+        </div>
+    </li>
+</ul>
+</div>

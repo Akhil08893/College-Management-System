@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content container-fluid">
+   <div class="page-header">
+      <div class="row">
+         <div class="col-sm-12">
+            <ul class="breadcrumb">
+               <li class="breadcrumb-item active">Dashboard</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-xl-3 col-sm-6 col-12 d-flex">
+         <div class="card bg-one w-100">
+            <div class="card-body">
+               <div class="db-widgets d-flex justify-content-between align-items-center">
+                  <div class="db-icon">
+                     <i class="fas fa-user-graduate"></i>
+                  </div>
+                  <div class="db-info">
+                     {% if students < 10 %}
+                        <h3> 0{{students}}</h3>
+                     {% else%}
+                        <h3>{{students}}</h3>
+                     {% endif %}
+                     <h6>Total Students</h6>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-xl-3 col-sm-6 col-12 d-flex">
+         <div class="card bg-two w-100">
+            <div class="card-body">
+               <div class="db-widgets d-flex justify-content-between align-items-center">
+                  <div class="db-icon">
+                     <i class="fas fa-chalkboard-teacher"></i>
+                  </div>
+                  <div class="db-info">
+                     {% if staffs < 10 %}
+                           <h3> 0{{staffs}}</h3>
+                     {% else%}
+                        <h3>{{staffs}}</h3>
+                     {% endif %}
+                     <h6>Total staff</h6>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+       <div class="col-xl-3 col-sm-6 col-12 d-flex">
+          <div class="card bg-three w-100">
+             <div class="card-body">
+                <div class="db-widgets d-flex justify-content-between align-items-center">
+                   <div class="db-icon">
+                      <i class="fas fa-graduation-cap"></i>
+                   </div>
+                   <div class="db-info">
+                     {% if courses < 10 %}
+                     <h3> 0{{courses}}</h3>
+                 {% else%}
+                     <h3>{{courses}}</h3>
+                 {% endif %}
+                      <h6>Total Courses</h6>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="col-xl-3 col-sm-6 col-12 d-flex">
+          <div class="card bg-four w-100">
+             <div class="card-body">
+                <div class="db-widgets d-flex justify-content-between align-items-center">
+                   <div class="db-icon">
+                      <i class="fas fa-book-reader"></i>
+                   </div>
+                   <div class="db-info">
+                     {% if subjects < 10 %}
+                     <h3> 0{{subjects}}</h3>
+                 {% else%}
+                     <h3>{{subjects}}</h3>
+                 {% endif %}
+                      <h6>Total Subjects</h6>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-md-12 col-lg-6">
+          <div class="card card-chart">
+             <div class="card-header">
+                <div class="row align-items-center">
+                   <div class="col-6">
+                      <h5 class="card-title">Details</h5>
+                   </div>
+                </div>
+             </div>
+             <div class="card-body">
+                <div id="all_details"></div>
+             </div>
+          </div>
+       </div>
+       <div class="col-md-12 col-lg-6">
+          <div class="card card-chart">
+             <div class="card-header">
+                <div class="row align-items-center">
+                   <div class="col-6">
+                      <h5 class="card-title">Number of Students</h5>
+                   </div>
+                </div>
+             </div>
+             <div class="card-body">
+                <div id="Stud_gender"></div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-md-6 d-flex">
+          <div class="card flex-fill">
+             <div class="card-header">
+                <h5 class="card-title">Star Students</h5>
+             </div>
+             <div class="card-body">
+                <div class="table-responsive">
+                   <table class="table table-hover table-center">
+                      <thead class="thead-light">
+                         <tr>
+                           <th class="text-center">Rank</th>
+                           <th>ID</th>
+                           <th>Name</th>
+                           <th class="text-center">Marks</th>
+                           <th class="text-right">Year</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {% for item in top_students %}
+                        <tr>
+                           <td class="text-center">{{ forloop.counter }}</td>
+                           <td class="text-nowrap">
+                                 <div>{{ item.student.student_id }}</div>
+                           </td>
+                           <td class="text-nowrap">{{item.student.name}}</td>
+                           <td class="text-center">{{item.total_marks}}</td>
+                           <td class="text-right">
+                                 <div>{{item.student.year}}</div>
+                           </td>
+                        </tr>
+                        {% endfor %}
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-6 d-flex">
+         <div class="card flex-fill">
+            <div class="card-header">
+               <h5 class="card-title">Student Activity</h5>
+            </div>
+            {% for activity in activities %}
+            <div class="card-body">
+               <ul class="activity-feed">
+                  <li class="feed-item">
+                     <div class="feed-date">{{ activity.activity_date }}</div>
+                     <span class="feed-text"><a href="#">{{ activity.student_id.name }}</a>  {{ activity.description }}  </span>
+                  </li>
+               </ul>
+            </div>
+            {% endfor %}
+         </div>
+      </div>
+   </div>
+</div>
+
+{% include 'includes/chart.html' %}
+{% endblock %}

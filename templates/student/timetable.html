@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if not timetable %}
+<br><br><br><br><Br><Br><br>
+    <br><br>
+    <p style=" text-align:center; font-size: 300%; color: red; font-family: verdana;">
+        Time Table not Updated
+    </p>
+{% else %}
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Time Table</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Timetable</li>
+                </ul>
+            </div> 
+            <div class="col-auto text-right float-right ml-auto">
+                <a href="{% url 'download_image' timetable.id %}" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+                
+        </div>
+    </div>
+
+<div class="text-center">
+    <img src="{{ timetable.photo.url }}" class="img-thumbnail" alt="..." width = "400px" height = "800px">
+</div>
+{% endif %}
+
+
+{% endblock %}

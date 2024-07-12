@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <h3 class="page-title">Students</h3>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                <li class="breadcrumb-item active">Students</li>
+            </ul>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-sm-12">
+        <div class="card card-table">
+            <div class="card-body">
+                <div class="table-responsive">
+                <table  id="table_id" class="table table-hover table-center mb-0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Class</th>
+                            <th>Gender</th>
+                            <th>Mobile Number</th>
+                            <th>Address</th>
+                            <th class="text-right">Action</th>
+                        </tr>
+                    </thead>
+                    {% for student in students %}
+                    <tbody>
+                        <tr>
+                            <td>{{student.student_id}}</td>
+                            <td>
+                            <h2 class="table-avatar">
+                                <!-- <a href="student-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-01.jpg" alt="User Image"></a> -->
+                                <a href="student-details.html">{{student.name}}</a>
+                            </h2>
+                            </td>
+                            <td>{{ student.Branch }} {{ student.section }}</td>
+                            <td>{{student.gender}}</td>
+                            <td>{{ student.mobile_number }}</td>
+                            <td>{{ student.address }}</td>
+                            <td class="text-right">
+                            <div class="actions">
+                                <a href="#" class="btn btn-sm bg-success-light mr-2">
+                                <i>message</i>
+                                </a>
+                            </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock %}

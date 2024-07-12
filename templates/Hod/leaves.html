@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <h3 class="page-title">Emergency Leaves</h3>
+        </div>
+        <div class="col-auto text-right float-right ml-auto">
+            <a href="#" class="btn btn-primary">Approve All Leaves</a>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-sm-12">
+        <div class="card card-table">
+            <div class="card-body">
+                <div class="table-responsive">
+                <table id="table_id" class="table table-hover table-center mb-0">
+                    <thead>
+                        <tr>
+                            <th>Staff</th>
+                            <th>Reason</th>
+                            <th class="text-right" >Action</th>
+                        </tr>
+                    </thead>
+                    {% for leave in leaves %}
+                    {% if not leave.status and not leave.disapprove %}
+                    <tbody>
+                        <tr>
+                            <td>{{leave.staff_id.staff_name}}</td>
+                            <td>{{ leave.message }}</td>
+                            <td class="text-right">
+                            
+                                <a href="{% url 'approve_leave'  leave.id %}" >
+                                    <button type="button" class="btn btn-success">Approve</button>
+                                </a>
+                                <a href="{% url 'disapprove_leave' leave.id %}" >
+                                    <button type="button" class="btn btn-danger">Disapprove</button>
+                                </a>
+                            
+                            </td>
+                        </tr>
+                    </tbody>
+                    {% endif %}
+                    {% endfor %}
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock %}

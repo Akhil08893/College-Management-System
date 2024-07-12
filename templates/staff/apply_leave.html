@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content container-fluid">
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <h3 class="page-title">Apply For Leave</h3>
+        </div>
+    </div>
+</div>
+    
+            <div class="card-body">
+                <div class="col-12">
+                    <div class="col-auto text-right float-right ml-auto">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                            Leaves Apply History
+                        </button>
+                    </div>
+                </div>
+            <form method="POST" action="{% url 'apply_leave'%}">
+                {% csrf_token %}
+                <div class="row">
+                <div class="col col-sm-6">
+                    <div class="form-group">
+                        <label>leave date</label>
+                        <div>
+                            <input type="date" class="form-control" name='date' required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea class="form-control" rows="5" name='message' required ></textarea>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Apply</button>
+                </div>
+            </div>
+            </form>
+            </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Leaves</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-hover table-center mb-0 ">
+                <thead>
+                    <tr>
+                        <th>Leave</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+            
+        {% for leave in leaves %}
+        <tbody>
+            <tr>
+                <td>{{leave.message}}({{leave.leave_date}})</td>
+                {% if leave.status %}
+                <td><span class="badge badge-success">Accepted</span></td>
+                {% elif not leave.disapprove %}
+                <td><span class="badge badge-warning">Pending</span></td>
+                {% elif leave.disapprove %}
+                <td><span class="badge badge-danger">Rejected</span></td>
+                {% endif %}
+            </tr>
+        </tbody>
+        {% endfor %}
+            </table>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock  %}
+    

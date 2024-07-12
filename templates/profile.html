@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+   <div class="col-sm-12">
+       <div class="card">
+          <div class="card-body">
+             <form method="POST" action="{% url 'profile_update' %}" enctype="multipart/form-data">
+               {% csrf_token %}
+                   <div class="col-12">
+                      <h5 class="form-title"><span>My Profile </span></h5>
+                   </div>
+                   <div class="row">
+                     <!-- Profile Image Section -->
+                     <div class="col-md-3.5 text-center">
+                        <div class="card" style="width: 20rem;">
+                           <img src="{{ user.profilepic.url }}" class="card-img-top" alt="...">
+                           <div class="card-body">
+                              <br>
+                             <h2 class="card-text">{{user.first_name}}</h2>
+                             <h6>{{user.email}}</h6>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Form Fields Section -->
+                     <div class="col-md-8">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" name='first_name' value="{{ user.first_name }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" name='last_name' value="{{ user.last_name }}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>User Name</label>
+                            <input type="text" class="form-control" name='username' value="{{ user.username }}"required>
+                        </div>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password" class="form-control" name='password' placeholder="New Password" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Profile Pic</label>
+                            <input type="file" class="form-control" name='profile_pic' required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </div>
+                     </div>
+                   </div>
+             </form>
+          </div>
+       </div>
+    </div>
+ </div>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .profile-image {
+        border-radius: 50%;
+        overflow: hidden;
+        width: 150px;
+        height: 150px;
+        margin-top: 10px;
+        display: inline-block;
+    }
+
+    .profile-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Optional: Additional styles for spacing */
+    .card-body {
+        padding: 20px;
+    }
+
+    .form-title {
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}

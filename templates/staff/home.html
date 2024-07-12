@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-12">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-sm-6 col-12 d-flex">
+            <div class="card bg-five w-100">
+                <div class="card-body">
+    <div class="db-widgets d-flex justify-content-between align-items-center">
+    <div class="db-icon">
+    <i class="fas fa-chalkboard"></i>
+    </div>
+    <div class="db-info">
+        {% if courses < 10 %}
+            <h3> 0{{courses}}</h3>
+        {% else%}
+            <h3>{{courses}}</h3>
+        {% endif %}
+    <h6>Total Classes</h6>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+    <div class="card bg-six w-100">
+    <div class="card-body">
+    <div class="db-widgets d-flex justify-content-between align-items-center">
+    <div class="db-icon">
+    <i class="fas fa-user-graduate"></i>
+    </div>
+    <div class="db-info">
+        {% if students < 10 %}
+            <h3> 0{{students}}</h3>
+        {% else%}
+            <h3>{{students}}</h3>
+        {% endif %}
+    <h6>Total Students</h6>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+    <div class="card bg-seven w-100">
+    <div class="card-body">
+    <div class="db-widgets d-flex justify-content-between align-items-center">
+    <div class="db-icon">
+    <i class="fas fa-book-open"></i>
+    </div>
+    <div class="db-info">
+        {% if subjects < 10 %}
+        <h3> 0{{subjects}}</h3>
+     {% else%}
+        <h3>{{subjects}}</h3>
+     {% endif %}
+    <h6>Total Lessons</h6>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+    <div class="card bg-eight w-100">
+    <div class="card-body">
+    <div class="db-widgets d-flex justify-content-between align-items-center">
+    <div class="db-icon">
+    <i class="fas fa-clock"></i>
+    </div>
+    <div class="db-info">
+    <h3>15/20</h3>
+    <h6>Total Hours</h6>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    
+    <div class="container">
+        <div class="row">
+            <!-- Upcoming Lessons section -->
+            <div class="col-12 col-lg-8 col-xl-8">
+                <div class="card flex-fill">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h5 class="card-title">Upcoming Lesson</h5>
+                            </div>
+                            <div class="col-6">
+                                <span class="float-right view-link"><a href="#">View All Courses</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 pb-3">
+                        <div class="table-responsive lesson">
+                            <table class="table table-center">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="date">
+                                                <b>Aug 4, Tuesday</b>
+                                                <p>2.30pm - 3.30pm (60min)</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="date">
+                                                <b>Data Mining(Lessons 30)</b>
+                                                <p>3.1 data preprocessing</p>
+                                            </div>
+                                        </td>
+                                        <td><a href="#">Confirmed</a></td>
+                                        <td><button type="submit" class="btn btn-info">Reschedule</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="date">
+                                                <b>Aug 5, Wednesday</b>
+                                                <p>3.00pm - 4.30pm (90min)</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="date">
+                                                <b>Machine Learning(Lessons 31)</b>
+                                                <p>3.2 supervised learning</p>
+                                            </div>
+                                        </td>
+                                        <td><a href="#">Confirmed</a></td>
+                                        <td><button type="submit" class="btn btn-info">Reschedule</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="date">
+                                                <b>Aug 6, Thursday</b>
+                                                <p>11.00am - 12.00pm (20min)</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="date">
+                                                <b>Python Programming(Lessons 32)</b>
+                                                <p>3.3 Lists, Tuples</p>
+                                            </div>
+                                        </td>
+                                        <td><a href="#">Confirmed</a></td>
+                                        <td><button type="submit" class="btn btn-info">Reschedule</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Teaching History section -->
+            <div class="col-12 col-lg-4 col-xl-4">
+                <div class="card flex-fill">
+                    <div class="card-header">
+                        <h5 class="card-title">Teaching History</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="teaching-card">
+                            <ul class="activity-feed">
+                                <li class="feed-item">
+                                    <div class="feed-date1">Sep 05, 9 am - 10 am (60min)</div>
+                                    <span class="feed-text1"><a>Web Development</a></span>
+                                    <p><span>In Progress</span></p>
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-date1">Sep 04, 2 pm - 3 pm (70min)</div>
+                                    <span class="feed-text1"><a>React Basics</a></span>
+                                    <p>Completed</p>
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-date1">Sep 02, 1 pm - 2 am (80min)</div>
+                                    <span class="feed-text1"><a>Machine Learning</a></span>
+                                    <p>Completed</p>
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-date1">Aug 30, 10 am - 12 pm (90min)</div>
+                                    <span class="feed-text1"><a>DBMS</a></span>
+                                    <p>Completed</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    
+
+{% endblock %}
+    

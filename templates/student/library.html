@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row align-items-center">
+          <div class="col">
+             <h3 class="page-title">Library</h3>
+             <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                <li class="breadcrumb-item active">Library</li>
+             </ul>
+          </div>
+          {% if user.user_type == '2'  or user.user_type == '3' %}
+          <div class="col-auto text-right float-right ml-auto">
+             
+             <a href="add-books.html" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+          </div>
+          {% endif %}
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card card-table">
+             <div class="card-body">
+                <div class="table-responsive">
+                   <table class="table table-hover table-center mb-0 datatable">
+                      <thead>
+                         <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Language</th>
+                            <th>Department</th>
+                            
+                            <th>Status</th>
+                            {% if user.user_type == '2' %}
+                            <th class="text-right">Action</th>
+                            {% endif %}
+                         </tr>
+                      </thead>
+                      <tbody>
+                        {% for book in books%}
+                         <tr>
+                            <td>{{book.book_id}}</td>
+                            <td>
+                               <strong>
+                                  {{book.book_name}}
+                               </strong>
+                            </td>
+                            <td>{{book.language}}</td>
+                            <td>{{book.department}}</td>
+                            
+                            {% if book.status %}
+                            <td>
+                                <span class="badge badge-success">In Stock</span>
+                            </td>
+                            {% else %}
+                            <td>
+                                <span class="badge badge-danger">out Stock</span>
+                            </td>
+                            {% endif %}
+                            {% if user.user_type == '2' %}
+                            <td class="text-right">
+                               <div class="actions">
+                                  <a href="edit-books.html" class="btn btn-sm bg-success-light mr-2">
+                                  <i class="fas fa-pen"></i>
+                                  </a>
+                                  <a href="#" class="btn btn-sm bg-danger-light">
+                                  <i class="fas fa-trash"></i>
+                                  </a>
+                               </div>
+                            </td>
+                            {% endif %}
+                         </tr>
+                         {% endfor %}
+                      </tbody>
+                   </table>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+ {% endblock %}

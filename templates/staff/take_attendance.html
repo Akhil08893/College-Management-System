@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Take Attendance</h3>
+            </div>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+            {% if action is None %}
+            <form method="POST" action="?action=get_student">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12">
+                    <h5 class="form-title"><span>Attendance</span></h5>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                        <label>Subject</label>
+                    <select class="form-control" name='subject' required>
+                        <option>Select Subject</option>
+                        {% for subject in subjects %}
+                            <option>{{ subject }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+                <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label>session-year</label>
+                    <select class="form-control" name='year' required>
+                        <option>Select year</option>
+                        {% for session in sessions %}
+                            <option>{{ session }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label>Branch</label>
+                    <select class="form-control" name='branch' required>
+                        <option>Select Branch</option>
+                        {% for Branch in Branches %}
+                            <option>{{ Branch }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" >Take Attendance</button>
+                </div>
+                </div>
+            </form>
+            {% else %}
+            <form method="POST" action="{% url 'save_attendance' %}">
+                {% csrf_token %}
+                <div class="col col-sm-6 mt-2">
+                    <div class="form-group">
+                        <label>Attendance date</label>
+                        <div>
+                            <input type="date" class="form-control" name='date'>
+                        </div>
+                    </div>
+                </div>
+                        <input type="hidden" class="form-control" name='subject_name' value="{{get_subject}}">
+                        <input type="hidden" class="form-control" name='year' value="{{get_year}}">
+                
+                <div class="col-12 col-sm-6 mt-5">
+                    <div class="form-group">
+                        <h3 class="page-title">Students</h3>
+                            <table class="table table-borderless">
+                                <thead>
+                                    <th>Students</th>
+                                    <th >Present</th>&nbsp
+                                    <th >Absent</th>
+                                </thead>
+                                {% for student in students %}
+                                <tbody>
+                                    <td>{{student.name}}</td>
+                                    <td><div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{student.id}}" id="flexCheckChecked" name="student_id" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            P
+                                        </label>
+                                    </div></td>
+                                    <td><div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{student.id}}" id="flexCheckChecked" name="sample" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            AB
+                                        </label>
+                                    </div></td>
+                                    </tbody>
+                                {% endfor %}
+                            </table>
+                            
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-primary" >Save Attendance</button>
+                            </div>
+                    </div>
+                {% endif %}
+                </div>
+        </form>
+    </div>
+</div>
+</div>
+
+{% endblock %}
