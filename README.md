@@ -6,6 +6,14 @@ Welcome to the College Management System developed using Python/Django!
 
 This project is a fully functional web application aimed at managing various aspects of college administration, including student information, staff management, courses, attendance, and more.
 
+## Technologies used
+  ### Django (Backend Framework)
+  Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It is known for its "batteries-included" philosophy, offering a 
+    wide range of built-in features and tools that facilitate common web development tasks, such as authentication, URL routing, and database schema migrations
+  ### MySQL (Database)
+  MySQL is a widely-used open-source relational database management system (RDBMS). Known for its reliability, robustness, and ease of use.MySQL serves as the backbone for storing and managing a large volume of structured data efficiently.It handles student records, course information, faculty details, timetables, grades, and other essential data.
+### Bootstrap (Frontend Framework)
+Bootstrap is a popular front-end framework for developing responsive and mobile-first web applications. It provides a collection of pre-designed HTML, CSS, and JavaScript components that streamline the process of creating modern, visually appealing user interfaces.
 
 ### Features
 
@@ -76,9 +84,13 @@ This project is a fully functional web application aimed at managing various asp
     ```bash
      python manage.py runserver
     ```
+    Then go to the browser and enter the url http://127.0.0.1:8000/
 5. **Login Credentials**
     #### Create Super User (HOD) :
     ```bash
       python manage.py createsuperuser
      ```
+    You can access the django admin page at http://127.0.0.1:8000/admin and login with username 'admin' and the  password created above
+
+## Screenshots
      
