@@ -76,16 +76,12 @@ Bootstrap is a popular front-end framework for developing responsive and mobile-
     ```bash
      cd student_management_system
      ```
-3. **Install Requirements from 'requirements.txt'**
-    ```bash
-     pip3 install -r requirements.txt
-    ```
-4. **Now Run Server**
+3. **Now Run Server**
     ```bash
      python manage.py runserver
     ```
     Then go to the browser and enter the url http://127.0.0.1:8000/
-5. **Login Credentials**
+4. **Login Credentials**
     #### Create Super User (HOD) :
     ```bash
       python manage.py createsuperuser
@@ -93,4 +89,70 @@ Bootstrap is a popular front-end framework for developing responsive and mobile-
     You can access the django admin page at http://127.0.0.1:8000/admin and login with username 'admin' and the  password created above
 
 ## Screenshots
-     
+### Home page
+![alt text](https://imgur.com/YU9qJQw.png)
+
+### HOD pages
+![alt text](https://imgur.com/sHhbD2d.png)
+
+![alt text](https://imgur.com/IBNNRLD.png)
+
+![alt text](https://imgur.com/B1DrMH0.png)
+
+![alt text](https://imgur.com/sWE3QSp.png)
+
+![alt text](https://imgur.com/QbGaslF.png)
+
+![alt text](https://imgur.com/hhUPLPG.png)
+
+
+### Staff Pages
+
+![alt text](https://imgur.com/qySVrQO.png)
+
+![alt text](https://imgur.com/5yoeil7.png)
+
+![alt text](https://imgur.com/Z0SFuDZ.png)
+
+![alt text](https://imgur.com/rRVHRaO.png)
+
+![alt text](https://imgur.com/HaH4ciJ.png)
+
+![alt text](https://imgur.com/gbwqMvU.png)
+
+### Student Pages
+
+![alt text](https://imgur.com/3gNXfjW.png)
+
+![alt text](https://imgur.com/YieV4Ve.png)
+
+![alt text](https://imgur.com/wvJP2fT.png)
+
+### Admin Page
+
+![alt text](https://imgur.com/0iXYmIh.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
